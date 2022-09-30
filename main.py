@@ -33,25 +33,32 @@ while True:
                 max_possibility=possibility
         answers_r_lst = answers_r.readlines()
         if len(found_question_lst)==1:
-            print("Its seems like you search for this question")
-            print("Question:"+found_question_lst[0][0])
-            print("Answer:"+answers_r_lst[found_question_lst[0][1]])
-            response = input("Is this answer correct or not (type y/n for response)")
-            if response=="y":
-                print("Thanks")
+            if found_question_lst[0][0]==user_question:
+                print("Question:"+found_question_lst[0][0])
+                print("Answer:"+answers_r_lst[found_question_lst[0][1]])    
             else:
-                print("Could you please provide me its answer for future usage..")
-                user_answer = input("Answer write here-->")
-                if(user_answer == "" or user_answer == " "):
-                    print("Don't interupt data :/")
-                else:
-                    questions_a = open("questions.txt","a")
-                    answers_a = open("answers.txt","a")
+                print("Its seems like you search for this question")
+                print("Question:"+found_question_lst[0][0])
+                print("Answer:"+answers_r_lst[found_question_lst[0][1]])
+                response = input("Is this answer correct or not (type y/n for response)")
+                questions_a = open("questions.txt","a")
+                answers_a = open("answers.txt","a")
+                if response=="y":
+                    print("Thanks")
                     questions_a.write(user_question+"\n")
-                    answers_a.write(user_answer+"\n")
-                    questions_a.close()
-                    answers_a.close()
-                    print("Thanks for showing your kindness....:)")
+                    answers_a.write(answers_r_lst[found_question_lst[0][1]])
+                else:
+                    print("Could you please provide me its answer for future usage..")
+                    user_answer = input("Answer write here-->")
+                    if(user_answer == "" or user_answer == " "):
+                        print("Don't interupt data :/")
+                    else:
+                        
+                        questions_a.write(user_question+"\n")
+                        answers_a.write(user_answer+"\n")
+                        print("Thanks for showing your kindness....:)")
+                questions_a.close()
+                answers_a.close()
         elif len(found_question_lst)>1:
             print("There is multiple question possibility choose which one belong to yours..")
             for i in found_question_lst:

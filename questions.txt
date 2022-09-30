@@ -1,2 +1,5 @@
 what is your name
 what is your owner name
+what is your master name
+who is your master
+what is your name
